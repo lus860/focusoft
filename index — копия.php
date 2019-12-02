@@ -1,6 +1,5 @@
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
-<?php include('function.php'); ?>
 <table class="table table-striped">
   <thead>
     <tr style="color:red;">
@@ -10,15 +9,15 @@
     </tr>
   </thead>
   <tbody>
-<?php $col=select($pdo,$table='products');
-     foreach($col as $key=>$val) {; ?>
+<?php  $result = $pdo->query("SELECT * FROM products ");
+while ( $row = $result->fetch(PDO::FETCH_ASSOC) ) {; ?>
    <tr>
-      <td><?php echo $val["0"] ?></td>
-      <td><?php echo $val["1"] ?></td>
-      <td><?php echo $val["2"] ?></td>
-      <td><input type="number" value="0" class="prod" data-prod-id="<?php echo $key ;?>"></td>
+      <td><?php echo $row['name'] ?></td>
+      <td><?php echo $row['description'] ?></td>
+      <td><?php echo $row['price'] ?></td>
+      <td><input type="number" value="0" class="prod" data-prod-id="<?php echo $row['id']; ?>"></td>
     </tr>
-<?php };?>
+<?php }; ?>
   </tbody>
 </table>
 <button  class="btn btn-primary" style="width:100px;" id="order"><a href="orders.php">Sign in</a></button>
