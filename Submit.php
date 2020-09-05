@@ -21,8 +21,10 @@ public function __construct( $error_name=null, $error_price=null, $error_descrip
         $this->error_email=$error_email;
     }
 }
-public function submit() 
+public function submit()
+    
 {
+    
     if (isset($_POST['submit'])) {
        foreach ($_POST as $key=>$val ) {
           if (empty($val)) {
@@ -33,12 +35,15 @@ public function submit()
     }; 
 }   
 public function insert($pdo, $col1, $col2, $col3, $table, $var1, $var2, $var3)
+    
 {
    if (!$this->error) {
      $stmt = $pdo->prepare("INSERT INTO $table ($var1, $var2, $var3 ) VALUES(?, ?, ?)");
      $stmt->execute([ $col1, $col2, $col3 ]); 
     };
+    
 }  
+    
 }
  
 
